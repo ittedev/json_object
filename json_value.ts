@@ -1,4 +1,7 @@
 import { JSONObject } from './json_object.ts'
 import { JSONArray } from './json_array.ts'
 
-export type JSONValue = string | number | boolean | null | JSONObject | JSONArray
+/**
+ * JSONValue is a value parsed from the JSON text.
+ */
+export type JSONValue = string | number | JSONObject | JSONArray | boolean | null

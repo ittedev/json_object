@@ -1,6 +1,14 @@
 import type { JSONObject } from './json_object.ts'
 import type { JSONArray } from './json_array.ts'
 
+/**
+ * Deep assign of JSONObject or JSONArray.
+ *
+ * @param {(JSONObject|JSONArray)} dst - a target object
+ * @param {(JSONObject|JSONArray)} src - a source object
+ * @param {boolean} [existOnly=false] - If set to true, only the properties of src are assigned.
+ * @return {(JSONObject|JSONArray)} Same instance as dst
+ */
 export function assign(dst: JSONObject, src: JSONObject): JSONObject
 export function assign(dst: JSONArray, src: JSONArray): JSONArray
 export function assign(dst: JSONObject, src: JSONObject, existOnly: boolean): JSONObject

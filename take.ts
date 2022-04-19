@@ -2,6 +2,13 @@ import { JSONValue } from './json_value.ts'
 import { JSONObject } from './json_object.ts'
 import { JSONArray } from './json_array.ts'
 
+/**
+ * Get a value from deep path of the object.
+ *
+ * @param {(JSONObject|JSONArray)} obj - a source object
+ * @param {(Array<string>|string)} path - An Array of property keys or a string joined them with `.`
+ * @return {(JSONObject|JSONArray)} a clone of the source object
+ */
 export function take(
   obj: JSONObject | JSONArray,
   path: Array<string> | string

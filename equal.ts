@@ -2,6 +2,13 @@ import { JSONValue } from './json_value.ts'
 import { JSONObject } from './json_object.ts'
 import { JSONArray } from './json_array.ts'
 
+/**
+ * Deep equal of JSONValue.
+ *
+ * @param {JSONValue} a - JSONValue
+ * @param {JSONValue} b - JSONValue
+ * @return {boolean} Result of comparison
+ */
 export function equal(a: JSONValue, b: JSONValue): boolean {
   if (a === b) {
     return true
