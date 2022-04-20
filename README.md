@@ -16,4 +16,4 @@ console.log(data)
 
 # More
 
-[Document](https://doc.deno.land/https://deno.land/x/beako/mod.ts)
+[Document](https://doc.deno.land/https://deno.land/x/json_object/mod.ts)
