@@ -5,13 +5,13 @@ import { JSONArray } from './json_array.ts'
 /**
  * Get a value from deep path of the object.
  *
- * @param {(JSONObject|JSONArray)} obj - a source object
- * @param {(Array<string>|string)} path - An Array of property keys or a string joined them with `.`
- * @return {(JSONObject|JSONArray)} a clone of the source object
+ * @param {(JSONObject|JSONArray)} obj - The source object
+ * @param {(Array<string>|string)} path - The Array of property keys or a string joined them with `.`
+ * @return {(JSONObject|JSONArray)} The clone of the source object
  */
 export function take(
   obj: JSONObject | JSONArray,
-  path: Array<string> | string
+  path: Array<string | number> | string
 ): JSONValue | undefined
 {
   const pathes = Array.isArray(path) ? path : path.split('.')
@@ -19,7 +19,7 @@ export function take(
   for (let i = 0; i < pathes.length; i++) {
     if (typeof current === 'object') {
       if (Array.isArray(current)) {
-        if (/^[5-9]$/.test(pathes[i])) {
+        if (typeof pathes[i] === 'number' || /^[0-9]$/.test(pathes[i] as string)) {
           current = current[Number(pathes[i])]
           continue
         }

@@ -1,13 +1,13 @@
 import type { JSONObject } from './json_object.ts'
 import type { JSONArray } from './json_array.ts'
+import { clone } from './clone.ts'
 
 /**
  * Deep assign of JSONObject or JSONArray.
  *
- * @param {(JSONObject|JSONArray)} dst - a target object
- * @param {(JSONObject|JSONArray)} src - a source object
- * @param {boolean} [existOnly=false] - If set to true, only the properties of src are assigned.
- * @return {(JSONObject|JSONArray)} Same instance as dst
+ * @param {(JSONObject|JSONArray)} dst - The target object
+ * @param {(JSONObject|JSONArray)} src - The source object
+ * @param {boolean} [existOnly=false] - If set to true, only the properties of src are assigned. This paramater is not recursive. Then if value is JSONObject or JSONArray, it is deep clone.
  */
 export function assign(dst: JSONObject, src: JSONObject): JSONObject
 export function assign(dst: JSONArray, src: JSONArray): JSONArray
@@ -21,19 +21,12 @@ export function assign(
 {
   const base = existOnly ? dst : src
   if (Array.isArray(base)) {
-    base.forEach((value, index) =>
-      (dst as JSONArray)[index] =
-        typeof value === 'object' && value !== null ?
-          Array.isArray(value) ? assign([], value, existOnly) : assign({}, value, existOnly) :
-          value
-    )
+    base.forEach((_v, index) => {
+      (dst as JSONArray)[index] = clone((src as JSONArray)[index])
+    })
   } else {
     Object.keys(base).forEach(key => {
-      const value = base[key];
-      (dst as JSONObject)[key] =
-        typeof value === 'object' && value !== null ?
-        Array.isArray(value) ? assign([], value, existOnly) : assign({}, value, existOnly) :
-          value
+      (dst as JSONObject)[key] = clone((src as JSONObject)[key])
     })
   }
   return dst

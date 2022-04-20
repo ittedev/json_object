@@ -1,15 +1,20 @@
+import { JSONValue } from './json_value.ts'
 import type { JSONObject } from './json_object.ts'
-import type { JSONArray } from './json_array.ts'
-import { assign } from './assign.ts'
 
 /**
- * Deep clone of JSONObject or JSONArray.
+ * Deep clone of JSONValue.
  *
- * @param {(JSONObject|JSONArray)} obj - a source object
- * @return {(JSONObject|JSONArray)} a clone of the source object
+ * @param {(JSONValue)} value - The original value
+ * @return {(JSONValue)} The cloned value
  */
-export function clone(
-  obj: JSONObject | JSONArray
-) {
-  return Array.isArray(obj) ? assign([], obj) : assign({}, obj)
+export function clone(value: JSONValue): JSONValue
+{
+  return typeof value === 'object' && value !== null ?
+    Array.isArray(value) ?
+      value.map(clone) :
+      Object.keys(value).reduce<JSONObject>((obj, key) => {
+        obj[key] = clone(value[key])
+        return obj
+      }, {}) :
+    value
 }
