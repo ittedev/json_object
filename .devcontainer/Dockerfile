@@ -6,3 +6,5 @@ RUN curl -Lo "/tmp/deno.zip" "https://github.com/denoland/deno/releases/download
     && unzip -d /usr/local/bin /tmp/deno.zip
 
 ENV PATH /home/vscode/.deno/bin:/usr/local/bin:$PATH
+
+RUN sudo -u vscode deno install -fA https://deno.land/x/beako_cli/beako.ts
