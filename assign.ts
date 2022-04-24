@@ -7,7 +7,7 @@ import { clone } from './clone.ts'
  *
  * @param {(JSONObject|JSONArray)} dst - The target object
  * @param {(JSONObject|JSONArray)} src - The source object
- * @param {boolean} [existOnly=false] - If set to true, only the properties of src are assigned. This paramater is not recursive. Then if value is JSONObject or JSONArray, it is deep clone.
+ * @param {boolean} [existOnly=false] - If set to true, only the properties of dst are assigned. This paramater is not recursive. Then if value is JSONObject or JSONArray, it is deep clone.
  */
 export function assign(dst: JSONObject, src: JSONObject): JSONObject
 export function assign(dst: JSONArray, src: JSONArray): JSONArray

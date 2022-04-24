@@ -1,3 +1,4 @@
+export type { JSONPrimitive } from './json_primitive.ts'
 export type { JSONValue } from './json_value.ts'
 export type { JSONObject } from './json_object.ts'
 export type { JSONArray } from './json_array.ts'
